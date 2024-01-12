@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://code.jquery.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  
+  <title>Advice generator app</title>
+</head>
+<body>
+
+  <div class="advice advice-wrapper">
+    <p class="advice__title">ADVICE #<span class="advice__title-id"></span></p>
+    <p class="advice__content"></p>
+    <picture class="advice__divisor">
+      <source media="(max-width:767px)" srcset="images/pattern-divider-mobile.svg" alt="pattern-divider"/>
+      <img src="images/pattern-divider-desktop.svg" alt="pattern-divider"/>
+    </picture>
+    
+    <button class="advice__dice-icon">
+      <img src="images/icon-dice.svg" alt="dice icon"/>
+    </button>
+  </div>
+  
+  <div class="attribution">
+    <p>Challenge by <a class="attribution__link" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</p>
+    <p>Coded by <a class="attribution__link" href="https://github.com/CaioCouto">Caio Couto</a>.</p>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const $diceButtonImage = $('.advice__dice-icon img');
+
+      function getAdvice() {
+        $($diceButtonImage).addClass('roll');
+        $.ajax("https://api.adviceslip.com/advice")
+        .then(resp => {
+          const { slip } = JSON.parse(resp);
+          const { id, advice } = slip;
+          const $adviceIdSpan = $('.advice__title-id');
+          const $adviceContent = $('.advice__content');
+
+          console.log(advice);
+
+          $($adviceIdSpan).text(id);
+          $($adviceContent).text('"'+advice+'"');
+          $($diceButtonImage).removeClass('roll');          
+        });
+      }
+
+      $('.advice__dice-icon').click(getAdvice);
+
+      getAdvice();
+    });
+  </script>
+</body>
+</html>

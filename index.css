@@ -1,0 +1,125 @@
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  /* Primary Colors */
+  --primary-light-cyan: #cee3e9;
+  --primary-neon-green: #52ffa8;
+  
+  /* Neutral Colors */
+  --neutral-grayish-blue: #4e5d73;
+  --neutral-dark-grayish-blue: #323a49;
+  --neutral-dark-blue: #1f2632;
+
+  /* Typography */
+  --quote-fs: 28px;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--neutral-dark-blue);
+}
+
+.advice {
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  background-color: var(--neutral-dark-grayish-blue);
+}
+
+.advice__title {
+  text-align: center;
+  color: var(--primary-neon-green);
+  margin: 10px 0;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.advice__content {
+  text-align: center;
+  font-size: var(--quote-fs);
+  color: var(--primary-light-cyan);
+  margin: 10px 0;
+  font-weight: 800;
+}
+
+.advice__divisor {
+  display: inline-block;
+  margin: 20px auto;
+}
+
+.advice__dice-icon {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 60px;
+  height: 60px;
+  background-color: #52ffa8;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  transition: all 100ms;
+}
+
+.advice__dice-icon:hover {
+  box-shadow: 0 0 40px var(--primary-neon-green);
+}
+
+.advice__dice-icon img.roll {
+ animation: rotate 1.6s linear infinite;
+}
+
+.attribution {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  color: var(--primary-light-cyan);
+}
+
+.attribution p {
+  margin: 0;
+}
+
+.attribution p:first-of-type {
+  margin-bottom: 5px;
+}
+
+.attribution__link {
+  color: var(--primary-neon-green);
+}
+
+@media (max-width: 767px) {
+  .advice {
+    width: 70%;
+  }
+}
+
+@media (max-width: 476px) {
+  .advice {
+    width: 90%;
+  }
+}
